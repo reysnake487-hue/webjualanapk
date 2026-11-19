@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101b36">
+<title>YANZ STORE — Roblox Shop</title>
+<style>
+:root{--navy:#101b36;--blue:#2563eb;--cyan:#42d7ff;--ink:#17233d;--muted:#71809c;--bg:#f3f6fc;--line:#e6ebf4;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select{font:inherit}button{cursor:pointer;border:0}
+.top{background:#0b1429;color:#dbeafe;text-align:center;padding:9px 14px;font-size:12px;letter-spacing:.3px}
+header{background:var(--navy);color:white;padding:18px max(18px,calc((100% - 1120px)/2));display:flex;align-items:center;justify-content:space-between;gap:14px;position:sticky;top:0;z-index:5;box-shadow:0 8px 25px #07132930}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.8px;font-size:19px}.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#43d7ff,#2563eb);display:grid;place-items:center;color:#07152e;font-weight:1000;font-size:19px;box-shadow:0 5px 20px #2d9bff55}
+.nav{display:flex;gap:8px;align-items:center}.nav button{background:transparent;color:#dce7ff;padding:10px 12px;border-radius:10px;font-size:13px}.nav button:hover{background:#ffffff16}.cartbtn{background:#2874ff!important;color:white!important;font-weight:800}
+main{max-width:1120px;margin:auto;padding:24px 18px 60px}
+.hero{border-radius:25px;padding:clamp(25px,5vw,55px);background:radial-gradient(circle at 85% 20%,#318cff70,transparent 30%),linear-gradient(120deg,#101b36,#163b79 68%,#126a9a);color:white;position:relative;overflow:hidden;min-height:270px;display:flex;align-items:center}
+.hero:after{content:"R";position:absolute;right:7%;top:50%;transform:translateY(-50%) rotate(-12deg);font-size:clamp(170px,30vw,300px);font-weight:1000;color:#ffffff12;line-height:1}
+.hero-content{max-width:590px;position:relative;z-index:1}.eyebrow{color:#77e3ff;font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.06;margin:12px 0}.hero p{color:#d7e6ff;line-height:1.65;max-width:520px;margin:0 0 22px}.primary{background:linear-gradient(100deg,#36d6ff,#3977ff);color:#07152e;padding:12px 18px;border-radius:12px;font-weight:900;box-shadow:0 8px 24px #1879ff50}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 28px}.trust div{background:white;border:1px solid var(--line);border-radius:15px;padding:14px;display:flex;gap:10px;align-items:center;font-size:13px;font-weight:750}.trust b{font-size:21px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 0 14px}.section-head h2{margin:0;font-size:23px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.filters{display:flex;gap:8px;overflow:auto;padding:2px 0 13px}.filter{white-space:nowrap;background:white;border:1px solid var(--line);color:#52617c;padding:9px 14px;border-radius:30px;font-size:13px;font-weight:750}.filter.active{background:var(--navy);color:white;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.product{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s;box-shadow:0 5px 18px #1b31500a}.product:hover{transform:translateY(-3px);box-shadow:0 12px 28px #1b315018}.product-art{height:135px;display:grid;place-items:center;font-size:58px;background:linear-gradient(135deg,#dff7ff,#e7edff);position:relative}.product-art.purple{background:linear-gradient(135deg,#eee5ff,#dce4ff)}.product-art.gold{background:linear-gradient(135deg,#fff3cf,#ffe4bd)}.tag{position:absolute;top:11px;left:11px;background:#fff;color:#2455a7;padding:5px 8px;border-radius:7px;font-size:10px;font-weight:900}.product-info{padding:14px}.product-info h3{font-size:15px;margin:0 0 6px}.desc{font-size:12px;color:var(--muted);min-height:32px;line-height:1.45}.price{font-size:18px;font-weight:950;color:#1558cf;margin:10px 0 12px}.product-actions{display:flex;gap:7px}.add{flex:1;background:var(--navy);color:white;border-radius:10px;padding:10px;font-size:12px;font-weight:800}.detail{background:#edf3ff;color:#2455a7;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:800}
+.info{margin-top:28px;background:white;border:1px solid var(--line);border-radius:18px;padding:20px;line-height:1.6;color:#53617b;font-size:13px}.info strong{color:var(--ink)}
+footer{background:#0b1429;color:#aebbd4;padding:28px 18px;text-align:center;font-size:12px}footer strong{color:white}
+.overlay{position:fixed;inset:0;background:#07132988;z-index:10;display:none;align-items:flex-end;justify-content:center}.overlay.show{display:flex}.drawer{background:white;width:min(100%,540px);max-height:88vh;overflow:auto;border-radius:22px 22px 0 0;padding:21px}.drawer-head{display:flex;justify-content:space-between;align-items:center}.drawer h2{margin:0 0 14px}.close{background:#eef2f8;border-radius:10px;padding:8px 11px}.cartline{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:12px 0;font-size:13px}.cartline small{display:block;color:var(--muted);margin-top:4px}.qty{display:flex;align-items:center;gap:8px}.qty button{background:#edf3ff;border-radius:7px;padding:5px 9px}.total{display:flex;justify-content:space-between;font-weight:900;font-size:17px;margin:18px 0}.checkout{width:100%;background:#16a34a;color:white;padding:14px;border-radius:12px;font-weight:900}.empty{text-align:center;color:var(--muted);padding:30px 0}
+.modalform{display:grid;gap:10px}.modalform input,.modalform select{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:white}.adminbtn{font-size:11px;color:#93a4c4;background:transparent;margin-top:12px}
+.toolbar{display:grid;grid-template-columns:1fr 190px auto;gap:9px;margin:4px 0 16px}.toolbar input,.toolbar select{min-width:0;border:1px solid var(--line);background:white;color:var(--ink);border-radius:12px;padding:12px 13px;outline:none}.toolbar input:focus,.toolbar select:focus{border-color:#3985ff;box-shadow:0 0 0 3px #3985ff20}.toolbtn{background:#eaf1ff;color:#2455a7;border-radius:12px;padding:10px 13px;font-weight:800;font-size:12px;white-space:nowrap}.heart{position:absolute;right:11px;top:10px;background:#ffffffed;color:#e04469;border-radius:50%;width:34px;height:34px;font-size:18px}.heart.on{background:#ffe5ec}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#101b36;color:white;padding:12px 17px;border-radius:12px;z-index:30;box-shadow:0 8px 25px #07132940;transition:.25s;font-size:13px}.toast.show{opacity:1;transform:translate(-50%,0)}body.dark{--bg:#0b1220;--ink:#e7eefc;--muted:#9aabc6;--line:#26344d}body.dark .trust div,body.dark .product,body.dark .info,body.dark .toolbar input,body.dark .toolbar select{background:#121e32;color:var(--ink);border-color:#26344d}body.dark .filter{background:#121e32;color:#c3d1e8;border-color:#26344d}body.dark .filter.active{background:#3977ff;color:white}body.dark .toolbtn{background:#1d3154;color:#a9c9ff}body.dark .product-art{filter:brightness(.82)}body.dark .detail{background:#1d3154;color:#a9c9ff}body.dark .price{color:#79b2ff}body.dark .drawer{background:#121e32;color:#e7eefc}body.dark .close,body.dark .qty button{background:#26344d;color:#e7eefc}body.dark .modalform input,body.dark .modalform select{background:#0b1220;color:#e7eefc;border-color:#26344d}
+@media(max-width:600px){.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}.toolbar .toolbtn{grid-column:1/-1}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nav button:not(.cartbtn){display:none}.trust{grid-template-columns:1fr}.trust div{padding:11px}.product-art{height:115px}}
+@media(max-width:390px){.grid{grid-template-columns:1fr}.product-art{height:145px}}
+
+/* YANZ STORE • fintech-inspired app refresh */
+:root{--bg:#f4f7fc;--navy:#101d40;--blue:#315efb;--cyan:#48d7f5;--ink:#182544;--muted:#8290aa;--line:#e8edf6}
+body{background:#f4f7fc;color:var(--ink);padding-bottom:80px}
+.top{background:#0c1734;padding:8px 12px;font-size:10px;letter-spacing:1.25px}
+header{background:#fff;color:#182544;padding:13px max(18px,calc((100% - 1120px)/2));box-shadow:0 4px 22px #12234b0c;border-bottom:1px solid #edf1f7}
+.brand{font-size:17px;letter-spacing:.2px;color:#142247}.logo{border-radius:13px;background:linear-gradient(145deg,#56dcff,#3867ff);color:#fff}
+.nav button{color:#51617f}.nav button:hover{background:#f1f5ff}.nav .cartbtn{color:white!important;background:linear-gradient(120deg,#416dff,#2450e8)!important;border-radius:12px;box-shadow:0 6px 15px #315efb35}
+main{padding-top:22px}
+.hero{min-height:235px;border-radius:25px;padding:clamp(24px,5vw,42px);background:radial-gradient(circle at 88% 20%,#9beaff55,transparent 28%),linear-gradient(120deg,#14234d,#254caa 65%,#237eae);box-shadow:0 18px 38px #193d8426}
+.hero:after{content:"R";right:8%;font-size:clamp(170px,28vw,270px);color:#ffffff12}
+.hero h1{font-size:clamp(29px,4.7vw,48px);letter-spacing:-1.5px}.hero p{font-size:13px;color:#dbe8ff}
+.primary{border-radius:13px;background:#fff;color:#244fcb;box-shadow:0 7px 18px #07132924}
+.app-shortcuts{margin:22px 0 25px}.welcome-line{display:flex;justify-content:space-between;align-items:center;margin:0 2px 14px}.welcome-line h2{font-size:20px;margin:3px 0 2px;letter-spacing:-.4px}.welcome-line p{font-size:12px;color:var(--muted);margin:0}.muted-mini{font-size:9px;letter-spacing:1.4px;font-weight:900;color:#8b98b0}.profile-bubble{height:42px;width:42px;border-radius:15px;background:linear-gradient(135deg,#dff7ff,#dce5ff);display:grid;place-items:center;color:#2456d9;font-weight:1000}
+.balance-card{padding:19px 20px;border-radius:20px;color:white;background:linear-gradient(115deg,#162752,#315fe0 72%,#398bd8);box-shadow:0 13px 28px #2854b52b;position:relative;overflow:hidden}
+.balance-card:after{content:"";position:absolute;width:170px;height:170px;border:1px solid #ffffff20;border-radius:50%;right:-45px;top:-85px;box-shadow:0 0 0 20px #ffffff08,0 0 0 42px #ffffff06}
+.balance-top,.balance-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative;z-index:1}.balance-top{font-size:9px;font-weight:900;letter-spacing:1.1px;color:#d8e7ff}.live-dot{font-size:9px;color:#a8ffd9}.balance-title{font-size:clamp(18px,3vw,24px);font-weight:900;letter-spacing:-.6px;margin:18px 0 19px;position:relative;z-index:1}.balance-bottom{font-size:11px;color:#d9e6ff}.balance-bottom button{background:#fff;color:#244fc5;border-radius:10px;padding:9px 12px;font-size:10px;font-weight:900}
+.shortcut-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:13px}.shortcut-grid button{background:white;border:1px solid #e9eef7;border-radius:16px;padding:13px 8px;text-align:left;box-shadow:0 5px 16px #17305a08;color:#203052;min-width:0}.shortcut-grid button b{display:block;font-size:11px;margin:9px 0 3px}.shortcut-grid button small{display:block;font-size:9px;color:#8a97ad;white-space:nowrap}.shortcut-icon{width:35px;height:35px;border-radius:12px;display:grid;place-items:center;font-size:18px}.shortcut-icon.cyan{background:#e2faff}.shortcut-icon.violet{background:#f0eaff}.shortcut-icon.orange{background:#fff2df}.shortcut-icon.green{background:#e4faef}
+.trust{gap:9px;margin:18px 0 26px}.trust div{border:1px solid #e9eef7;border-radius:14px;box-shadow:0 4px 14px #17305a06;font-size:11px;color:#53627d}.trust b{font-size:18px}
+.section-head{margin:30px 0 13px}.section-head h2{font-size:21px;letter-spacing:-.5px}.section-head p{font-size:12px}
+.filter{border-radius:11px;background:#fff;border-color:#e9eef7;padding:9px 13px;font-size:11px}.filter.active{background:#1b2c55;border-color:#1b2c55}
+.toolbar{grid-template-columns:1fr 175px auto;gap:8px}.toolbar input,.toolbar select{border-radius:12px;border-color:#e7edf6;padding:12px;font-size:12px;box-shadow:0 3px 10px #17305a05}.toolbtn{border-radius:12px;font-size:11px}
+.grid{gap:13px}.product{border:1px solid #e9eef7;border-radius:17px;box-shadow:0 5px 18px #17305a08}.product-art{height:120px}.product-info{padding:13px}.product-info h3{font-size:13px}.desc{font-size:10px}.price{font-size:16px;color:#2859dc}.add{background:linear-gradient(120deg,#345ff1,#2850d4);border-radius:10px}.detail{border-radius:10px}
+.info{border-radius:17px;border-color:#e9eef7;box-shadow:0 5px 18px #17305a08;font-size:12px}
+.bottom-nav{display:none}
+.drawer{border-radius:24px 24px 0 0;box-shadow:0 -15px 45px #07132922}.checkout{border-radius:13px;background:linear-gradient(110deg,#17b978,#0d9c69);box-shadow:0 7px 18px #16a36c35}
+.adminbtn{color:#98a4b8}
+body.dark{--bg:#0c1428;--ink:#e9efff;--muted:#9aaaca;--line:#263655}
+body.dark header{background:#101d38;color:#eaf0ff;border-color:#253655}body.dark .brand{color:#eaf0ff}
+body.dark .welcome-line h2{color:#eaf0ff}body.dark .shortcut-grid button{background:#14213c;color:#eaf0ff;border-color:#263655}body.dark .trust div{background:#14213c}body.dark .balance-card{box-shadow:0 13px 28px #0005}body.dark .bottom-nav{background:#101d38;border-color:#263655}body.dark .bottom-nav button{color:#9aaaca}body.dark .bottom-nav .bottom-active{color:#80a8ff}
+@media(max-width:760px){
+ body{padding-bottom:85px}header{padding:11px 15px}.nav button:not(.cartbtn){display:none}
+ main{padding:16px 14px 40px}.hero{min-height:220px;border-radius:21px}.hero:after{right:-3%;font-size:190px}
+ .shortcut-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.shortcut-grid button{padding:11px 7px;border-radius:14px}.shortcut-grid button b{font-size:10px}.shortcut-grid button small{font-size:8px}
+ .trust{grid-template-columns:1fr 1fr 1fr}.trust div{padding:10px 8px;display:block;text-align:center}.trust b{display:block;margin-bottom:5px}
+ .toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}.toolbar .toolbtn{grid-column:1/-1}
+ .bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:8;background:#ffffffed;backdrop-filter:blur(16px);border-top:1px solid #e8edf6;padding:8px 8px calc(8px + env(safe-area-inset-bottom));justify-content:space-around;box-shadow:0 -5px 22px #172b4d0a}
+ .bottom-nav button{background:transparent;color:#8a97ad;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;font-weight:750;min-width:55px}.bottom-nav button span{font-size:20px;line-height:22px}.bottom-nav .bottom-active{color:#315efb}
+}
+@media(max-width:390px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-art{height:105px}.shortcut-grid button small{white-space:normal}}
+
+</style>
+</head>
+<body>
+<div class="top">⚡ YANZ STORE • TEMPATNYA KEBUTUHAN ROBLOX KAMU</div>
+<header>
+ <div class="brand"><div class="logo">Y</div>YANZ STORE</div>
+ <nav class="nav"><button onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">Produk</button><button onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">Bantuan</button><button onclick="toggleTheme()" title="Ganti tema">🌙</button><button class="cartbtn" onclick="openCart()">🛒 Keranjang <span id="cartCount">0</span></button></nav>
+</header>
+<main>
+ <section class="hero"><div class="hero-content"><div class="eyebrow">YOUR ROBLOX MARKETPLACE</div><h1>Upgrade pengalaman<br>Roblox kamu!</h1><p>Cari Robux, item favorit, atau akun Roblox pilihanmu. Pilih produk, masukkan ke keranjang, lalu pesan langsung lewat WhatsApp.</p><button class="primary" onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">Jelajahi Produk →</button></div></section>
+ <section class="app-shortcuts">
+  <div class="welcome-line"><div><span class="muted-mini">SELAMAT DATANG DI</span><h2>YANZ STORE 👋</h2><p>Semua kebutuhan Roblox, lebih praktis.</p></div><div class="profile-bubble">Y</div></div>
+  <div class="balance-card"><div class="balance-top"><span>✨ TOKO GAME PILIHANMU</span><span class="live-dot">● ONLINE</span></div><div class="balance-title">Upgrade akun & koleksi Roblox kamu</div><div class="balance-bottom"><span>Robux • Akun • Item</span><button onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">Lihat katalog ↗</button></div></div>
+  <div class="shortcut-grid">
+   <button onclick="setCategory('Robux')"><span class="shortcut-icon cyan">💎</span><b>Top Up Robux</b><small>Pilih paket Robux</small></button>
+   <button onclick="setCategory('Akun')"><span class="shortcut-icon violet">🎮</span><b>Akun Roblox</b><small>Cek akun tersedia</small></button>
+   <button onclick="setCategory('Item')"><span class="shortcut-icon orange">👑</span><b>Item Roblox</b><small>Lengkapi avatar</small></button>
+   <button onclick="openCart()"><span class="shortcut-icon green">🛍️</span><b>Keranjang</b><small>Lanjutkan pesanan</small></button>
+  </div>
+ </section>
+ <section class="trust"><div><b>⚡</b><span>Proses pesanan via WhatsApp</span></div><div><b>🔒</b><span>Jangan pernah bagikan password</span></div><div><b>💬</b><span>Bantuan langsung admin</span></div></section>
+ <section id="produk">
+  <div class="section-head"><div><h2>Temukan Produk</h2><p>Pilih kebutuhan Roblox kamu</p></div></div>
+  <div class="filters" id="filters"><button class="filter active" data-cat="Semua">Semua</button><button class="filter" data-cat="Robux">Top Up Robux</button><button class="filter" data-cat="Akun">Akun Roblox</button><button class="filter" data-cat="Item">Item Roblox</button></div>
+  <div class="toolbar"><input id="searchBox" type="search" placeholder="🔎 Cari Robux, akun, atau item..." oninput="render()"><select id="sortBox" onchange="render()"><option value="featured">Urutkan: Rekomendasi</option><option value="low">Harga terendah</option><option value="high">Harga tertinggi</option><option value="name">Nama A–Z</option></select><button class="toolbtn" id="wishFilter" onclick="toggleWishFilter()">♡ Wishlist saya</button></div>
+  <div class="grid" id="productGrid"></div>
+ </section>
+ <section class="info" id="info"><strong>📌 Informasi pemesanan</strong><br>Pilih produk lalu tekan Tambah ke Keranjang. Saat checkout, detail pesanan akan dikirim ke WhatsApp admin. Pastikan harga dan ketersediaan dikonfirmasi sebelum membayar. Transaksi jual-beli akun dapat berisiko dan mungkin tidak sesuai dengan ketentuan Roblox; YANZ STORE bukan mitra resmi Roblox. Jangan pernah mengirimkan password atau kode verifikasi akun.</section>
+ <button class="adminbtn" onclick="adminLogin()">⚙ Admin: kelola produk</button>
+</main>
+<footer><strong>YANZ STORE</strong><br>Roblox Marketplace • Bukan situs resmi Roblox<br>© 2026 YANZ STORE</footer>
+<nav class="bottom-nav">
+ <button class="bottom-active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>⌂</span>Beranda</button>
+ <button onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})"><span>▦</span>Produk</button>
+ <button onclick="openCart()"><span>🛒</span>Pesanan</button>
+ <button onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})"><span>☏</span>Bantuan</button>
+</nav>
+<div class="toast" id="toast">Berhasil!</div>
+<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()"><div class="drawer"><div class="drawer-head"><h2>Keranjang Kamu</h2><button class="close" onclick="closeCart()">✕</button></div><div id="cartItems"></div><div class="total"><span>Total</span><span id="cartTotal">Rp0</span></div><button class="checkout" onclick="checkout()">Pesan via WhatsApp</button></div></div>
+<div class="overlay" id="adminOverlay" onclick="if(event.target===this)closeAdmin()"><div class="drawer"><div class="drawer-head"><h2>Tambah Produk</h2><button class="close" onclick="closeAdmin()">✕</button></div><form class="modalform" id="adminForm"><input id="pname" placeholder="Nama produk" required><select id="pcat"><option value="Robux">Top Up Robux</option><option value="Akun">Akun Roblox</option><option value="Item">Item Roblox</option></select><input id="pprice" type="number" min="1" placeholder="Harga (angka rupiah)" required><input id="pdesc" placeholder="Deskripsi singkat" required><button class="checkout" type="submit">Simpan Produk</button></form><p style="font-size:12px;color:#71809c">Produk tersimpan di browser/perangkat ini saja. Untuk toko online yang bisa dikelola dari banyak perangkat, perlu database dan hosting.</p></div></div>
+<script>
+const defaultProducts=[
+{id:1,name:"Robux 80",cat:"Robux",price:18000,desc:"Paket Robux • konfirmasi metode pengiriman",emoji:"💎",tone:""},
+{id:2,name:"Robux 400",cat:"Robux",price:79000,desc:"Paket Robux • konfirmasi metode pengiriman",emoji:"💠",tone:""},
+{id:3,name:"Robux 800",cat:"Robux",price:149000,desc:"Paket Robux • konfirmasi metode pengiriman",emoji:"💎",tone:"purple"},
+{id:4,name:"Akun Roblox Starter",cat:"Akun",price:25000,desc:"Contoh listing akun • detail via admin",emoji:"🎮",tone:"purple"},
+{id:5,name:"Akun Roblox Premium",cat:"Akun",price:75000,desc:"Contoh listing akun • detail via admin",emoji:"🕹️",tone:""},
+{id:6,name:"Item Limited / Favorit",cat:"Item",price:35000,desc:"Contoh listing item • cek stok terlebih dahulu",emoji:"👑",tone:"gold"},
+{id:7,name:"Item Avatar Bundle",cat:"Item",price:22000,desc:"Item avatar • konfirmasi ketersediaan",emoji:"✨",tone:"purple"},
+{id:8,name:"Robux 1700",cat:"Robux",price:299000,desc:"Paket Robux • konfirmasi metode pengiriman",emoji:"💰",tone:"gold"}
+];
+let products=JSON.parse(localStorage.getItem("yanzProducts")||"null")||defaultProducts;
+let cart=JSON.parse(localStorage.getItem("yanzCart")||"[]"), active="Semua";
+let favorites=JSON.parse(localStorage.getItem("yanzFavorites")||"[]"), onlyFavorites=false;
+const rupiah=n=>"Rp"+Number(n).toLocaleString("id-ID");
+function save(){localStorage.setItem("yanzProducts",JSON.stringify(products));localStorage.setItem("yanzCart",JSON.stringify(cart))}
+function render(){
+ const query=(document.getElementById("searchBox")?.value||"").trim().toLowerCase();
+ let list=products.filter(p=>(active==="Semua"||p.cat===active)&&(!query||(p.name+" "+p.desc).toLowerCase().includes(query))&&(!onlyFavorites||favorites.includes(p.id)));
+ const sort=document.getElementById("sortBox")?.value||"featured";
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));
+ document.getElementById("productGrid").innerHTML=list.map(p=>`<article class="product"><div class="product-art ${p.tone||""}"><span class="tag">${p.cat==="Robux"?"TOP UP":p.cat.toUpperCase()}</span><button class="heart ${favorites.includes(p.id)?"on":""}" aria-label="Wishlist" onclick="toggleFavorite(${p.id})">${favorites.includes(p.id)?"♥":"♡"}</button>${p.emoji||"🎁"}</div><div class="product-info"><h3>${esc(p.name)}</h3><div class="desc">${esc(p.desc)}</div><div class="price">${rupiah(p.price)}</div><div class="product-actions"><button class="add" onclick="addCart(${p.id})">+ Keranjang</button><button class="detail" onclick="quickBuy(${p.id})">Beli</button></div></div></article>`).join("")||'<p style="color:var(--muted);grid-column:1/-1;padding:25px 0">Produk tidak ditemukan. Coba kata kunci lain.</p>';
+ document.getElementById("cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0);
+ document.getElementById("wishFilter").textContent=onlyFavorites?"♥ Menampilkan wishlist":"♡ Wishlist saya";
+}
+function toast(message){const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>t.classList.remove("show"),1900)}
+function setCategory(category){
+ active=category;
+ document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.dataset.cat===category));
+ document.getElementById("produk").scrollIntoView({behavior:"smooth"});
+ render();
+}
+function toggleFavorite(id){favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem("yanzFavorites",JSON.stringify(favorites));render();toast(favorites.includes(id)?"Ditambahkan ke wishlist":"Dihapus dari wishlist")}
+function toggleWishFilter(){onlyFavorites=!onlyFavorites;render()}
+function toggleTheme(){document.body.classList.toggle("dark");localStorage.setItem("yanzDark",document.body.classList.contains("dark")?"1":"0");toast(document.body.classList.contains("dark")?"Mode gelap aktif":"Mode terang aktif")}
+if(localStorage.getItem("yanzDark")==="1")document.body.classList.add("dark");
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{active=b.dataset.cat;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));render()});
+function addCart(id){let x=cart.find(i=>i.id===id);x?x.qty++:cart.push({id,qty:1});save();render();toast("Produk masuk ke keranjang") }
+function quickBuy(id){addCart(id);openCart()}
+function openCart(){document.getElementById("cartOverlay").classList.add("show");renderCart()}
+function closeCart(){document.getElementById("cartOverlay").classList.remove("show")}
+function renderCart(){let box=document.getElementById("cartItems");if(!cart.length){box.innerHTML='<div class="empty">Keranjang masih kosong 🛒</div>';document.getElementById("cartTotal").textContent="Rp0";return}
+box.innerHTML=cart.map(i=>{let p=products.find(x=>x.id===i.id);return p?`<div class="cartline"><div><strong>${esc(p.name)}</strong><small>${rupiah(p.price)} / item</small></div><div class="qty"><button onclick="changeQty(${i.id},-1)">−</button>${i.qty}<button onclick="changeQty(${i.id},1)">+</button></div></div>`:""}).join("");
+document.getElementById("cartTotal").textContent=rupiah(cart.reduce((s,i)=>{let p=products.find(x=>x.id===i.id);return s+(p?p.price*i.qty:0)},0))}
+function changeQty(id,n){let x=cart.find(i=>i.id===id);if(x){x.qty+=n;if(x.qty<=0)cart=cart.filter(i=>i.id!==id)}save();render();renderCart()}
+function checkout(){if(!cart.length){alert("Keranjang masih kosong.");return}let lines=cart.map(i=>{let p=products.find(x=>x.id===i.id);return p?`- ${p.name} x${i.qty} = ${rupiah(p.price*i.qty)}`:""}).filter(Boolean);let total=cart.reduce((s,i)=>{let p=products.find(x=>x.id===i.id);return s+(p?p.price*i.qty:0)},0);let msg="Halo YANZ STORE, saya mau pesan:%0A"+encodeURIComponent(lines.join("\n"))+"%0A%0ATotal: "+encodeURIComponent(rupiah(total))+"%0AUsername Roblox (jangan kirim password): ";window.open("https://wa.me/62882000059866?text="+msg,"_blank")}
+function adminLogin(){let pin=prompt("Masukkan PIN admin:");if(pin==="yanz2026")document.getElementById("adminOverlay").classList.add("show");else if(pin!==null)alert("PIN salah.")}
+function closeAdmin(){document.getElementById("adminOverlay").classList.remove("show")}
+document.getElementById("adminForm").onsubmit=e=>{e.preventDefault();products.unshift({id:Date.now(),name:document.getElementById("pname").value,cat:document.getElementById("pcat").value,price:Number(document.getElementById("pprice").value),desc:document.getElementById("pdesc").value,emoji:document.getElementById("pcat").value==="Robux"?"💎":document.getElementById("pcat").value==="Akun"?"🎮":"👑",tone:""});save();render();e.target.reset();closeAdmin();alert("Produk ditambahkan di perangkat ini.")};
+render();
+</script>
+</body></html>
